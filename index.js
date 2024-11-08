@@ -4,23 +4,28 @@ const moviesList = document.getElementById('moviesList')
 
 const movieList = [];
 
-// 1. считывать значения с input
-// 2. Проверять на пустое значение
-// 2. записывать в массив
-// 3. render фильм
-// 2. обрабатывать клик на нажатие кнопки
-//
+// 1. Добавить стили для зачеркивания
+// 1. Добавлять класс с зачеркиванием
+// 2. Добавить кнопку для обработки удаления
+
 
 const renderMovie = () => {
-    moviesList.innerText = '';
+    let postHTML = '';
 
     movieList.forEach((movie) => {
-        const movieItem = document.createElement('li');
-        movieItem.innerText = `${movie}`
-        movieItem.className = 'items__item'
-
-        moviesList.appendChild(movieItem);
+        postHTML += `
+        <li id="movieItem" class="items__item ">
+            <label id="check" class="check">
+                <input type="checkbox" class="check__box">
+                ${movie}
+            </label>
+            <button class="items__item-btn">
+                <img src="./img/delete.png" alt="delete" class="">
+             </button>
+        </li>
+        `
     })
+    moviesList.innerHTML = postHTML;
 }
 
 const valueFromUser = () => inputNode.value;
