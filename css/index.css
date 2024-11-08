@@ -113,8 +113,43 @@ body {
     padding: 0 24px 0 60px;
 }
 
-.items__item img {
+.items__item-cross {
+    text-decoration: line-through;
+}
+
+.items__item-btn {
     position: absolute;
     right: 24px;
+    top: 35%;
     cursor: pointer;
+    width: 23px;
+    height: 23px;
+    background-color: transparent;
+    border: none;
+}
+
+
+
+.check {
+    padding-left: 1.5em;
+}
+
+.check__box {
+    position: absolute;
+    appearance: none;
+}
+
+.check__box::after {
+    position: absolute;
+    content: "";
+    margin-left: -4.5em;
+    width: 1.5em;
+    height: 1.5em;
+    background-image: url(../img/off.svg);
+    background-repeat: no-repeat;
+    transform: translateY(-10%);
+}
+
+.check__box:checked::after {
+    background-image: url(../img/on.svg);
 }

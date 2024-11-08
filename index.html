@@ -29,20 +29,28 @@
             <div class="list">
                 <div class="list__container">
                     <div class="list__wrapper">
-                        <input type="text" placeholder="Добавить фильм" class="list__wrapper-input">
-                        <button class="list__wrapper-btn"><img src="./img/sent.png" alt="button"></button>
+                        <input type="text" placeholder="Добавить фильм" id="movieInput" class="list__wrapper-input">
+                        <button id="addBtn" class="list__wrapper-btn"><img src="./img/sent.png" alt="button"></button>
                     </div>
-                    <ul class="items">
-                        <li class="items__item"><input type="checkbox">Остров проклятых <img src="img/delete.png"
-                                alt="delete"></li>
-                        <li class="items__item">Поймай меня, если сможешь<img src="img/delete.png" alt="delete"></li>
-                        <li class="items__item">Отступники<img src="img/delete.png" alt="delete"></li>
+                    <ul id="moviesList" class="items">
+                        <li id="movieItem" class="items__item ">
+                            <label id="check" class="check">
+                                <input type="checkbox" class="check__box">
+                                Остров проклятых
+                            </label>
+                            <button class="items__item-btn">
+                                <img src="./img/delete.png" alt="delete" class="">
+                            </button>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
+    <script src="index.js"></script>
 </body>
 
 </html>
+
+<!-- <li class="items__item items__item-cross"></li> -->
