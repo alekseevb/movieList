@@ -96,9 +96,14 @@ body {
     cursor: pointer;
 }
 
+
 .items {
     margin-top: 40px;
 
+}
+
+.items-hello {
+    display: none;
 }
 
 .items__item {
@@ -109,8 +114,12 @@ body {
     min-height: 71px;
     margin-bottom: 3px;
     border-radius: 10px;
-    background: #3A3939;
+    background-color: #3A3939;
     padding: 0 24px 0 60px;
+}
+
+.item-done {
+    opacity: 0.3;
 }
 
 .items__item-cross {
@@ -126,6 +135,10 @@ body {
     height: 23px;
     background-color: transparent;
     border: none;
+}
+
+.items__item-btn img {
+    pointer-events: none;
 }
 
 .check {

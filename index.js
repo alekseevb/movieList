@@ -2,59 +2,59 @@ const PRINT_FILM = 'Введите фильм';
 
 const inputNode = document.getElementById('movieInput');
 const addBtnNode = document.getElementById('addBtn');
+const emptyList = document.getElementById('emptyList')
 const moviesList = document.getElementById('moviesList');
 const cleanBtnNode = document.getElementById('cleanBtn');
 
-const list = [];
+const addMovieHandler = () => {
 
-// 1. Добавить стили для зачеркивания
-// 1. Добавлять класс с зачеркиванием
-// 2. Добавить кнопку для обработки удаления
-// 3. Серая подлложка остается не изменной, а филмы могут скроллиться
+    // Получаем значение от пользователя
+    const movieFromUser = inputNode.value;
 
-const renderMovie = () => {
-    let postHTML = '';
-
-    list.forEach((movie) => {
-        postHTML += `
-        <li id="movieItem" class="items__item ">
+    const movieHtml = `
+    <li id="movieItem" class="items__item">
             <label id="check" class="check">
-                <input type="checkbox" class="check__box">
-                ${movie}
+                <input type="checkbox" data-action="done" class="check__box">
+                ${movieFromUser}
             </label>
-            <button id="cleanBtn" class="items__item-btn">
+            <button data-action="delete" id="cleanBtn" class="items__item-btn">
                 <img src="./img/delete.png" alt="delete" class="">
              </button>
         </li>
-        `
-    })
-    moviesList.innerHTML = postHTML;
-}
+    `
+    moviesList.insertAdjacentHTML('beforeend', movieHtml);
 
-const valueFromUser = () => inputNode.value;
+    // Очищаем поле ввода и возвращаем фокус на поле ввода
+    inputNode.value = '';
+    inputNode.focus();
 
-const cleanValueFromUser = () => inputNode.value = '';
-
-const addButtonHandler = () => {
-    const currentValue = valueFromUser();
-
-    if (!currentValue) {
-        alert(PRINT_FILM)
-        return;
+    // Проверка. Убирает первый элемент li с текстом "Добавь свой первый фильм"
+    if (moviesList.children.length > 1) {
+        emptyList.classList.add('items-hello')
     }
 
-    list.push(currentValue);
-
-    cleanValueFromUser();
-    renderMovie()
 }
 
-const cleanButtonHandler = () => {
-    list.forEach((movie) => {
-        postHTML = '';
-    })
+const deleteMovieHandler = (event) => {
+    if (event.target.dataset.action === 'delete') {
+        const parentNode = event.target.closest('li');
+        parentNode.remove()
+
+    }
+    // Проверка. Убирает первый элемент li с текстом "Добавь свой первый фильм"
+    if (moviesList.children.length === 1) {
+        emptyList.classList.remove('items-hello')
+    }
 }
 
+const doneMovieHandler = (event) => {
+    if (event.target.dataset.action === 'done') {
+        const parent = event.target.closest('li');
+        parent.classList.toggle('item-done')
 
-addBtnNode.addEventListener('click', addButtonHandler);
-cleanBtnNode.addEventListener('click', cleanButtonHandler);
+    }
+}
+
+addBtnNode.addEventListener('click', addMovieHandler);
+moviesList.addEventListener('click', deleteMovieHandler);
+moviesList.addEventListener('click', doneMovieHandler);
